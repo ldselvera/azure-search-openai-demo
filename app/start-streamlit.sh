@@ -21,14 +21,14 @@ if [ $out -ne 0 ]; then
 fi
 
 echo ""
-echo "Starting FastAPI backend and Streamlit frontend"
+echo "Starting Quart backend and Streamlit frontend"
 echo ""
 
 cd app/backend
 
-# Start FastAPI backend in background
-echo "Starting FastAPI backend on port 8000..."
-../../.venv/bin/python -m uvicorn fastapi_app:app --host 0.0.0.0 --port 8000 --reload &
+# Start Quart backend in background
+echo "Starting Quart backend on port 50505..."
+../../.venv/bin/python -m quart --app main:app run --port 50505 --host localhost --reload &
 BACKEND_PID=$!
 
 # Wait for backend to start
@@ -37,12 +37,12 @@ sleep 3
 # Start Streamlit frontend
 echo "Starting Streamlit frontend on port 8501..."
 cd ..
-BACKEND_URL=http://localhost:8000 ../../.venv/bin/streamlit run streamlit_app.py --server.port 8501 --server.address localhost &
+BACKEND_URL=http://localhost:50505 ../../.venv/bin/streamlit run streamlit_app.py --server.port 8501 --server.address localhost &
 FRONTEND_PID=$!
 
 echo ""
 echo "================================================"
-echo "FastAPI backend running at: http://localhost:8000"
+echo "Quart backend running at: http://localhost:50505"
 echo "Streamlit frontend running at: http://localhost:8501"
 echo "================================================"
 echo ""

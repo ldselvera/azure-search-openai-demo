@@ -13,7 +13,7 @@ import streamlit as st
 from streamlit.runtime.scriptrunner import get_script_run_ctx
 
 # Configuration
-BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
+BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:50505")
 
 
 # Helper functions

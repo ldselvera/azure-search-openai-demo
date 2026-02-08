@@ -20,14 +20,14 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 Write-Host ""
-Write-Host "Starting FastAPI backend and Streamlit frontend"
+Write-Host "Starting Quart backend and Streamlit frontend"
 Write-Host ""
 
 Set-Location app\backend
 
-# Start FastAPI backend in background
-Write-Host "Starting FastAPI backend on port 8000..."
-$backend = Start-Process -FilePath "..\..\..\.venv\Scripts\python.exe" -ArgumentList "-m", "uvicorn", "fastapi_app:app", "--host", "0.0.0.0", "--port", "8000", "--reload" -PassThru -NoNewWindow
+# Start Quart backend in background
+Write-Host "Starting Quart backend on port 50505..."
+$backend = Start-Process -FilePath "..\..\..\.venv\Scripts\python.exe" -ArgumentList "-m", "quart", "--app", "main:app", "run", "--port", "50505", "--host", "localhost", "--reload" -PassThru -NoNewWindow
 
 # Wait for backend to start
 Start-Sleep -Seconds 3
@@ -35,12 +35,12 @@ Start-Sleep -Seconds 3
 # Start Streamlit frontend
 Write-Host "Starting Streamlit frontend on port 8501..."
 Set-Location ..
-$env:BACKEND_URL = "http://localhost:8000"
+$env:BACKEND_URL = "http://localhost:50505"
 $frontend = Start-Process -FilePath "..\..\.venv\Scripts\streamlit.exe" -ArgumentList "run", "streamlit_app.py", "--server.port", "8501", "--server.address", "localhost" -PassThru -NoNewWindow
 
 Write-Host ""
 Write-Host "================================================"
-Write-Host "FastAPI backend running at: http://localhost:8000"
+Write-Host "Quart backend running at: http://localhost:50505"
 Write-Host "Streamlit frontend running at: http://localhost:8501"
 Write-Host "================================================"
 Write-Host ""

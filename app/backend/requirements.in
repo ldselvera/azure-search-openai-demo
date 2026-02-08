@@ -2,13 +2,11 @@ azure-functions>=1.24.0
 azure-identity
 quart
 quart-cors
-fastapi
-uvicorn[standard]
-streamlit
-aiohttp
 openai>=1.109.1
 tiktoken
 tenacity
+streamlit
+aiohttp
 azure-ai-documentintelligence==1.0.2
 azure-cognitiveservices-speech
 azure-cosmos
