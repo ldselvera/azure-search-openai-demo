@@ -2,6 +2,10 @@ azure-functions>=1.24.0
 azure-identity
 quart
 quart-cors
+fastapi
+uvicorn[standard]
+streamlit
+aiohttp
 openai>=1.109.1
 tiktoken
 tenacity
@@ -11,8 +15,7 @@ azure-cosmos
 azure-search-documents==11.7.0b2
 azure-storage-blob
 azure-storage-file-datalake
-uvicorn
-aiohttp
+python-multipart
 azure-monitor-opentelemetry
 opentelemetry-instrumentation-asgi
 opentelemetry-instrumentation-httpx
