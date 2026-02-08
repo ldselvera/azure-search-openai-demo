@@ -43,6 +43,8 @@ This template, the application code and configuration it contains, has been buil
 - [Deploying](#deploying)
   - [Deploying again](#deploying-again)
 - [Running the development server](#running-the-development-server)
+  - [React Frontend (Default)](#react-frontend-default)
+  - [Streamlit Frontend (Alternative)](#streamlit-frontend-alternative)
 - [Using the app](#using-the-app)
 - [Clean up](#clean-up)
 - [Guidance](#guidance)
@@ -202,6 +204,8 @@ azd up
 
 You can only run a development server locally **after** having successfully run the `azd up` command. If you haven't yet, follow the [deploying](#deploying) steps above.
 
+### React Frontend (Default)
+
 1. Run `azd auth login` if you have not logged in recently.
 2. Start the server:
 
@@ -221,6 +225,31 @@ You can only run a development server locally **after** having successfully run 
 
 It's also possible to enable hotloading or the VS Code debugger.
 See more tips in [the local development guide](docs/localdev.md).
+
+### Streamlit Frontend (Alternative)
+
+As an alternative to the React frontend, you can use the Python-based Streamlit frontend:
+
+1. Run `azd auth login` if you have not logged in recently.
+2. Start the Streamlit server:
+
+  Windows:
+
+  ```shell
+  ./app/start-streamlit.ps1
+  ```
+
+  Linux/Mac:
+
+  ```shell
+  ./app/start-streamlit.sh
+  ```
+
+  This will start both the Quart backend (port 50505) and Streamlit frontend (port 8501).
+
+3. Open your browser to http://localhost:8501
+
+See the [Streamlit frontend documentation](docs/streamlit-frontend.md) for more details.
 
 ## Using the app
 
