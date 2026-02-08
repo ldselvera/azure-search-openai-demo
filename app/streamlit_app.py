@@ -6,11 +6,10 @@ This replaces the React/TypeScript frontend.
 import asyncio
 import json
 import os
-from typing import Any, Optional
+from typing import Any
 
 import aiohttp
 import streamlit as st
-from streamlit.runtime.scriptrunner import get_script_run_ctx
 
 # Configuration
 BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:50505")
@@ -48,9 +47,10 @@ async def send_chat_message(messages: list[dict], context: dict, session_state: 
         else:
             async with session.post(url, json=payload) as response:
                 if response.status == 200:
-                    return await response.json()
+                    result = await response.json()
+                    yield result
                 else:
-                    return {"error": f"Error: {response.status}"}
+                    yield {"error": f"Error: {response.status}"}
 
 
 def initialize_session_state():
